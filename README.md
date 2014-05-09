@@ -1,7 +1,7 @@
 USCSS
 =====
 
-United States of CSS Elements
+United States of CSS Selectors.
 
 Allows to declare rules for all states of an element in one line.
 
