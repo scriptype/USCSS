@@ -9,17 +9,14 @@ function parse (css) {
 
   // A utility function: remove all spaces in the beginning or end of a string.
   function _antiSpace (txt, isEnd) {
-  
     // Variables for deciding which part of the string will be spliced.
     var charIndex = isEnd ? (txt.length -1) : 0,
         sliceParams = isEnd ? [0, -1] : [1, txt.length]
-        
     // If a spaces character found in specified position, recurse.
     if (txt[charIndex] === " ") {
       txt = txt.slice(sliceParams[0], sliceParams[1])
       return _antiSpace(txt, isEnd)
     }
-    
     // No more spaces, return final string.
     return txt
   }
