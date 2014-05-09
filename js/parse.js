@@ -70,25 +70,25 @@ function parse (css) {
   for (i; i < states.length; i++) {
     for (var property in rulesObj) {
       // Make a list of values for every property in ruleObj
-      var valuesArr = rulesObj[property].split(",")
+      var valueSet = rulesObj[property].split(",")
       var j = 0
-      for (j; j < valuesArr.length; j++) {
+      for (j; j < valueSet.length; j++) {
         // RGBA & RGB values are also listed with ",", so concat them as a single value.
-        if (valuesArr[j].match(/rgba/)) {
+        if (valueSet[j].match(/rgba/)) {
           // After "rgba(x," there should be 2 more color values and alpha, concat them to "rgba(x,".
-          valuesArr[j] += "," + valuesArr[j + 1] + "," + valuesArr[j + 2] + "," + valuesArr[j + 3]
+          valueSet[j] += "," + valueSet[j + 1] + "," + valueSet[j + 2] + "," + valueSet[j + 3]
           // Then remove following 3 values.
-          valuesArr.splice(j + 1, 3)
-        } else if (valuesArr[j].match(/rgb/)) {
+          valueSet.splice(j + 1, 3)
+        } else if (valueSet[j].match(/rgb/)) {
           // Same story but without alpha value.
-          valuesArr[j] += "," + valuesArr[j + 1] + "," + valuesArr[j + 2]
-          valuesArr.splice(j + 1, 2)
+          valueSet[j] += "," + valueSet[j + 1] + "," + valueSet[j + 2]
+          valueSet.splice(j + 1, 2)
         }
         // Clear space characters in both edges of value string.
-        valuesArr[j] = _antiSpace(_antiSpace(valuesArr[j], true), false)
+        valueSet[j] = _antiSpace(_antiSpace(valueSet[j], true), false)
       }
       // If state has a value or set of values for property, grab it.
-      var stateValue = valuesArr[i]
+      var stateValue = valueSet[i]
       if (stateValue) {
         // Get rid of braces that surrounds values.
         stateValue = stateValue.replace("[", "").replace("]", "")
