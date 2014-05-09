@@ -9,6 +9,7 @@ Allows to declare rules for all states of an element in one line.
 element {
   $states: :hover, :active, .small;
   color: [blue, red];
+  margin: [0, 0 50px, 0 25px, 10px];
   font-size: [1em, 1em, .8em]
 }
 ```
