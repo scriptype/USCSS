@@ -99,14 +99,6 @@ function parse (css) {
         stateValue = stateValue.replace("]", "")
         // If this is the first rule of state, create an empty object for it.
         if (!stateRules[i])
-        /* {
-              state: ":hover",
-              rules {
-                color: red;
-                background: blue
-              }
-           }
-        */
           stateRules[i] = {
             state : states[i],
             rules : {}
