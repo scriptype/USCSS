@@ -71,6 +71,8 @@ function parse (css) {
     for (var property in rulesObj) {
       // Make a list of values for every property in ruleObj
       var valueSet = rulesObj[property].split(",")
+      
+      // RGB & RGBA FIX
       var j = 0
       for (j; j < valueSet.length; j++) {
         // RGBA & RGB values are also listed with ",", so concat them as a single value.
@@ -87,12 +89,13 @@ function parse (css) {
         // Clear space characters in both edges of value string.
         valueSet[j] = _antiSpace(_antiSpace(valueSet[j], true), false)
       }
+      
       // If state has a value or set of values for property, grab it.
       var stateValue = valueSet[i]
       if (stateValue) {
         // Get rid of braces that surrounds values.
         stateValue = stateValue.replace("[", "").replace("]", "")
-        // If this is the first rule of state, create an empty object for it.
+        // If this is the first rule of state, you've to create an empty object for it.
         if (!stateRules[i])
           stateRules[i] = {
             state : states[i],
@@ -110,7 +113,7 @@ function parse (css) {
     // #element.state {
     output += selector + stateRules[i].state + " {\n"
     for (var property in stateRules[i].rules) {
-      // "  property:value" for each property
+      // "  property: value;" for each property
       output += "\t" + property + ": " + stateRules[i].rules[property] + ";\n"
     }
     // }
