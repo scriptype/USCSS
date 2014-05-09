@@ -75,7 +75,7 @@ function parse (css) {
       for (j; j < valuesArr.length; j++) {
         // RGBA & RGB values are also listed with ",", so concat them as a single value.
         if (valuesArr[j].match(/rgba/)) {
-          // After "rgba(x," there should be 3 more color values, concat them to "rgba(x,".
+          // After "rgba(x," there should be 2 more color values and alpha, concat them to "rgba(x,".
           valuesArr[j] += "," + valuesArr[j + 1] + "," + valuesArr[j + 2] + "," + valuesArr[j + 3]
           // Then remove following 3 values.
           valuesArr.splice(j + 1, 3)
@@ -85,15 +85,13 @@ function parse (css) {
           valuesArr.splice(j + 1, 2)
         }
         // Clear space characters in both edges of value string.
-        valuesArr[j] = _antiSpace(valuesArr[j], true)
-        valuesArr[j] = _antiSpace(valuesArr[j], false)
+        valuesArr[j] = _antiSpace(_antiSpace(valuesArr[j], true), false)
       }
       // If state has a value or set of values for property, grab it.
       var stateValue = valuesArr[i]
       if (stateValue) {
         // Get rid of braces that surrounds values.
-        stateValue = stateValue.replace("[", "")
-        stateValue = stateValue.replace("]", "")
+        stateValue = stateValue.replace("[", "").replace("]", "")
         // If this is the first rule of state, create an empty object for it.
         if (!stateRules[i])
           stateRules[i] = {
