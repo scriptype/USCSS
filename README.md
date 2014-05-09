@@ -8,6 +8,8 @@ Allows to declare rules for all states of an element in one line.
 ```css
 element {
   $states: :hover, :active, .small;
+  display: block;
+  font-style: italic;
   color: [blue, red];
   margin: [0, 0 50px, 0 25px, 10px];
   font-size: [1em, 1em, .8em]
@@ -18,6 +20,8 @@ will compile into:
 
 ```css
 element {
+    display: block;
+    font-style: italic;
 	color: blue;
 	margin: 0;
 	font-size: 1em;
