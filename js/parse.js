@@ -41,6 +41,12 @@ function parse (css) {
   // If declaration doesn't start with $states, return itself
   if (rules[0].charAt(0) !== "$")
     return css
+  
+  /* There may be a semicolon in the end of last rule,
+     this causes an empty string to be counted as a new rule,
+     (splitting by ";" causes this) take it out. */
+  if (!rules[rules.length - 1])
+    rules.pop()
 
   // Seperate "property" and "value" of each rule.
   var i = 0
@@ -149,7 +155,7 @@ element {\n\
   border: [1px solid red,\n\
            2px solid rgba(255,170,50,.5),\n\
            2px dashed blue,\n\
-           5px solid black]\n\
+           5px solid black];\n\
 }"
 
 parse(cssdec)
