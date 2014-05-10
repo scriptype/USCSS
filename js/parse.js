@@ -7,7 +7,7 @@ function parse (css) {
       states   = "",
       output   = ""
 
-  // A utility function: remove all spaces in the beginning or end of a string.
+  // Utility function: remove all spaces in the beginning or end of a string.
   function _antiSpace (txt, isEnd) {
     // Variables for deciding which part of the string will be spliced.
     var charIndex = isEnd ? (txt.length -1) : 0,
@@ -20,6 +20,18 @@ function parse (css) {
     // No more spaces, return final string.
     return txt
   }
+  
+  // Utility function: detect if a value has an unclosed paranthesis.
+  function _wrapper (str) {
+    // See if str contains any opening or closing paranthesis.
+    var isOpens     = str.match(/\(/g),
+        isCloses    = str.match(/\)/g),
+        // If so keep the count, else set them to zero.
+        openCount   = isOpens ? isOpens.length : 0,
+        closeCount  = isCloses ? isCloses.length : 0
+    // Will return a positive number if it contains opening but not closing paranthesis & vice versa.
+    return openCount - closeCount
+  }
 
   // Seperate the "selector" and "rules" sections.
   rules = css.split("{")
@@ -28,7 +40,7 @@ function parse (css) {
   // Make sure "selector" doesn't contain spaces in the end.
   selector = _antiSpace(selector, true)
   
-  // Make "rules" section string and cut off ending brace.
+  // Make "rules" section a string and cut off ending brace.
   rules = rules.join().split("}")
   rules.pop()
   // Seperate each rule.
@@ -75,28 +87,52 @@ function parse (css) {
       stateRules = []
   for (i; i < states.length; i++) {
     for (var property in rulesObj) {
-      // Make a list of values for every property in ruleObj
-      var valueSet = rulesObj[property].split(",")
+      // Make a list of values for every property in ruleObj.
+      var valueSet
+      // Split values by "," if they're contained with brackets.
+      if (rulesObj[property].match(/\[/))
+        valueSet = rulesObj[property].split(",")
+      // Don't mess with any single value that may contain commas as well.
+      else
+        valueSet = [rulesObj[property]]
       
-      // RGB & RGBA FIX
+      // Correct values that contain commas. i.e: rgb(0,0,0).
       var j = 0
       for (j; j < valueSet.length; j++) {
-        // RGBA & RGB values are also listed with ",", so concat them as a single value.
-        if (valueSet[j].match(/rgba/)) {
-          // After "rgba(x," there should be 2 more color values and alpha, concat them to "rgba(x,".
-          valueSet[j] += "," + valueSet[j + 1] + "," + valueSet[j + 2] + "," + valueSet[j + 3]
-          // Then remove following 3 values.
-          valueSet.splice(j + 1, 3)
-        } else if (valueSet[j].match(/rgb/)) {
-          // Same story but without alpha value.
-          valueSet[j] += "," + valueSet[j + 1] + "," + valueSet[j + 2]
-          valueSet.splice(j + 1, 2)
+        // wrapInfo will keep how many unclosed paranthesis value has.
+        var wrapInfo     = _wrapper(valueSet[j])
+            closerIndex  = j
+        // Value has some "unclosed" paranthesis. value may be like: "rgba(255".
+        if (wrapInfo > 0) {
+          // Look for any values that contain closing paranthesis after this value.
+          var k = j + 1
+          for (k; k < valueSet.length; k++) {
+            // Number of "unopened" paranthesis.
+            var _wrapInfo = _wrapper(valueSet[k])
+            // Means we found missing closing paranthesis. Keep index of this value.
+            if (_wrapInfo * -1 === wrapInfo) {
+              closerIndex = k
+              break
+            }
+          }
+        }
+        // Means we found missing closing paranthesis.
+        if (closerIndex > j) {
+          // Number of values between values that have opening and closing paranthesis.
+          var diff = closerIndex - j,
+              inc  = 1
+          // Concatenate all values into paranthesis-starter-value
+          for (inc; inc <= diff; inc++) {
+            valueSet[j] += "," + valueSet[j + inc]
+          }
+          // Remove idle values which are no more needed.
+          valueSet.splice(j + 1, diff)
         }
         // Clear space characters in both edges of value string.
         valueSet[j] = _antiSpace(_antiSpace(valueSet[j], true), false)
       }
       
-      // If state has a value or set of values for property, grab it.
+      // If state has a value or valueSet for property, grab it.
       var stateValue = valueSet[i]
       if (stateValue) {
         // Get rid of braces that surrounds values.
@@ -144,8 +180,9 @@ function parse (css) {
 }
 
 var cssdec = "\
-element {\n\
+element.class-name {\n\
   $states: :hover, :active, .small;\n\
+  font-family: helvetica, arial, sans-serif;\n\
   display: block;\n\
   text-decoration: none;\n\
   color: [blue, red];\n\
