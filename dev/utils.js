@@ -30,6 +30,6 @@ define([], function () {
     
   }
   
-  return Utils
+  return new Utils()
 
 })
