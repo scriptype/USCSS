@@ -7,7 +7,7 @@ var rawBuffer   = new Buffer(FileSystem.readFileSync("./uscss.json")),
 FileSystem.readFile(fileOptions.source, function (err, fd) {
     if (err)
         if (err.code === "ENOENT")
-            throw fileOptions.source + " doesn't exist."
+            throw err.path + " doesn't exist."
         else
             throw err
 
