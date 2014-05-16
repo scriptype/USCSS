@@ -1,4 +1,4 @@
-var Declaration = require("./lib/declaration").Declaration
+var Declaration = require("./lib/declaration")
 
 var USCSS = "\
 element.class-name {\n\
