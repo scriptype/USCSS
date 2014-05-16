@@ -1,0 +1,14 @@
+element.class-name {
+    $states: :hover, :active, .small;
+    font-family: helvetica, arial, sans-serif;
+    display: block;
+    text-decoration: none;
+    color: [blue, red];
+    margin: [0, 0 50px, 0 25px, 10px];
+    font-size: [1em, 1em, 1.1em, .8em];
+    background: [red, rgba(255,255,255,.5)];
+    border: [1px solid red,
+            2px solid rgba(255,170,50,.5),
+            2px dashed blue,
+            5px solid black];
+}
