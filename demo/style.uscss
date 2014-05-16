@@ -1,5 +1,5 @@
-element.class-name {
-    $states: :hover, :active, .small;
+div.muz {
+    $states: :hover, :active .inner-element, .small;
     font-family: helvetica, arial, sans-serif;
     display: block;
     text-decoration: none;
