@@ -14,19 +14,13 @@
   "license": "BSD-2",
   "devDependencies": {
     "npm": "~1.2.30",
-    "install": "~0.1.7",
-    "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-requirejs": "~0.4.1",
-    "requirejs": "~2.1.8"
+    "install": "~0.1.7"
   },
   "bugs": {
     "url": "https://github.com/scriptype/USCSS/issues"
   },
   "homepage": "https://github.com/scriptype/USCSS",
-  "dependencies": {
-    "grunt": "~0.4.2"
-  },
+  "dependencies": {},
   "keywords": [
     "css", "state", "class", "selector"
   ]

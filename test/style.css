@@ -1,0 +1,28 @@
+element.class-name {
+	font-family: helvetica, arial, sans-serif;
+	display: block;
+	text-decoration: none;
+	color: blue;
+	margin: 0;
+	font-size: 1em;
+	background: red;
+	border: 1px solid red;
+}
+element.class-name:hover {
+	color: red;
+	margin: 0 50px;
+	font-size: 1em;
+	background: rgba(255,255,255,.5);
+	border: 2px solid rgba(255,170,50,.5);
+}
+element.class-name:active {
+	margin: 0 25px;
+	font-size: 1.1em;
+	border: 2px dashed blue;
+}
+element.class-name.small {
+	margin: 10px;
+	font-size: .8em;
+	border: 5px solid black;
+}
+
