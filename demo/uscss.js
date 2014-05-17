@@ -1,27 +1,36 @@
 var FileSystem  = require("fs"),
-    Declaration = require("./../lib/declaration")
+    Utils = require("./../lib/utils")
 
-var rawBuffer   = new Buffer(FileSystem.readFileSync("./uscss.json")),
-    fileOptions = JSON.parse(rawBuffer.toString())
+// Get contents of uscss.json
+var options     = JSON.parse(
+    (new Buffer(
+        FileSystem.readFileSync("./uscss.json")
+    )).toString())
 
-FileSystem.readFile(fileOptions.source, function (err, fd) {
+// Read contents of source file that is stated in uscss.json
+FileSystem.readFile(options.source, function (err, fd) {
     if (err)
         if (err.code === "ENOENT")
             throw err.path + " doesn't exist."
         else
             throw err
 
-    var fileData = new Buffer(fd),
-        usInput = new Declaration(fileData.toString())
+    // Get the list of separate css-blocks
+    var declarations = Utils.getDeclarations(new Buffer(fd).toString()),
+        usOutput = "/* compiled with USCSS on: " + new Date() + "*/ \n"
+        i = 0
+    for (i; i < declarations.length; i++) {
+        // Get each declaration block prepare their output
+        declarations[i].getOutput()
+        // Append outputs each other
+        usOutput += declarations[i].output
+    }
 
-    usInput.getOutput()
-
-    var usOutput = usInput.output
-
-    FileSystem.writeFile(fileOptions.output, usOutput, function (err) {
+    // Write output into the output file that is stated in uscss.json
+    FileSystem.writeFile(options.output, usOutput, function (err) {
         if (err)
             throw err
         else
-            console.log(fileOptions.output, "created.")
+            console.log(options.output, "created.")
     })
 })

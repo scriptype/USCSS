@@ -1,3 +1,4 @@
+/* compiled with USCSS on: Sat May 17 2014 16:44:28 GMT+0300 (GTB Yaz Saati)*/ 
 div.muz {
 	font-family: helvetica, arial, sans-serif;
 	display: block;
@@ -25,3 +26,47 @@ div.muz.small {
 	font-size: .8em;
 	border: 5px solid black;
 }
+/* comment-1 */
+a {
+	/* comment-2 */    font-family: helvetica, arial, sans-serif;
+	display: block;
+	text-decoration: none;
+	/* comment-3 */    color: #eee;
+	background: url(..img/leyley.png) top left, url(../img/lel.png) bottom center;
+}
+/* comment-1 */
+a:active {
+	display: none;
+	/* comment-3 */    color: #ddd;
+	background: url(../img/lol.png);
+}
+/* comment-1 */
+a:hover {
+	display: block;
+	/* comment-3 */    color: red;
+	background: #fd5;
+}
+lel {
+    b: c;
+    d: e
+}
+lol{}
+/* comment-4 */
+
+leyley {
+	/*  com        ment-5 */    color: red;
+	background: blue;
+}
+/* comment-4 */
+
+leyley:not(.hede) {
+	background: red;
+}
+loyloy {
+	color: red;
+	background: blue;
+}
+loyloya {
+	background: red;
+}
+/* comment-6 */

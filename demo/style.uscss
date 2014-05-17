@@ -12,3 +12,38 @@ div.muz {
             2px dashed blue,
             5px solid black];
 }
+
+/* comment-1 */
+a {
+    $states: :active, :hover, .big; /* comment-2 */
+    font-family: helvetica, arial, sans-serif;
+    display: [block, none, block];
+    text-decoration: none; /* comment-3 */
+    color: [#eee, #ddd, red];
+    background: [(url(..img/leyley.png) top left, url(../img/lel.png) bottom center),
+                url(../img/lol.png),
+                #fd5]
+}
+
+lel {
+    b: c;
+    d: e
+}
+
+lol{} /* comment-4 */
+
+leyley {
+    $states: :not(.hede);
+    /*  com
+        ment-5 */
+    color: red;
+    background: [blue, red]
+}
+
+loyloy {
+    $states: a;
+    color: red;
+    background: [blue, red]
+}
+
+/* comment-6 */
