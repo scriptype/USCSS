@@ -25,14 +25,14 @@ a {
                 #fd5]
 }
 
-lel {
-    b: c;
-    d: e
+b {
+    font-weight: bold;
+    visibility: hidden
 }
 
-lol{} /* comment-4 */
+i{} /* comment-4 */
 
-leyley {
+p {
     $states: :not(.hede);
     /*  com
         ment-5 */
@@ -40,8 +40,8 @@ leyley {
     background: [blue, red]
 }
 
-loyloy {
-    $states: a;
+hr {
+    $states: :last-child;
     color: red;
     background: [blue, red]
 }
