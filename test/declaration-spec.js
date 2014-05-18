@@ -4,10 +4,6 @@ var FileSystem  = require("fs"),
 var source      = (new Buffer(FileSystem.readFileSync("./demo/style.uscss"))).toString(),
     declarations = Utils.getDeclarations(source)
 
-/* BUGINDEX
- * TODO #1: fix comments, https://github.com/scriptype/USCSS/issues/1
- * TODO #2: fix rule splitting, https://github.com/scriptype/USCSS/issues/2 */
-
 describe("Declaration splitting", function () {
 
     it("should be resulted with 6 declarations in total", function () {
@@ -30,9 +26,9 @@ describe("Declaration class", function () {
 
     it("should get SELECTOR of a uscss declaration properly", function () {
         expect(declarations[0].selector).toBe("div.muz")
-        expect(declarations[1].selector).toBe("a") // TODO #1
+        expect(declarations[1].selector).toBe("a")
 
-        expect(declarations[4].selector).toBe("p") // TODO #1
+        expect(declarations[4].selector).toBe("p")
         expect(declarations[5].selector).toBe("hr")
     })
 
@@ -46,17 +42,17 @@ describe("Declaration class", function () {
         expect(declarations[0].rulesObject["background"]).toBe("[red, rgba(255,255,255,.5)]")
         expect(declarations[0].rulesObject["border"].replace(/\s/g, "")).toBe("[1pxsolidred,2pxsolidrgba(255,170,50,.5),2pxdashedblue,5pxsolidblack]")
 
-        expect(declarations[1].rulesObject["font-family"]).toBe("helvetica, arial, sans-serif") // TODO #1
+        expect(declarations[1].rulesObject["font-family"]).toBe("helvetica, arial, sans-serif")
         expect(declarations[1].rulesObject["display"]).toBe("[block, none, block]")
-        expect(declarations[1].rulesObject["color"]).toBe("[#eee, #ddd, red]") // TODO #1
+        expect(declarations[1].rulesObject["color"]).toBe("[#eee, #ddd, red]")
         expect(declarations[1].rulesObject["text-decoration"]).toBe("none")
         expect(declarations[1].rulesObject["background"].replace(/\s/g, "")).toBe("[(url(..img/leyley.png)topleft,url(../img/lel.png)bottomcenter),url(../img/lol.png),#fd5]")
 
-        expect(declarations[4].rulesObject["color"]).toBe("red") // TODO #1
-        expect(declarations[4].rulesObject["background"]).toBe("[blue, red]") // TODO #2
+        expect(declarations[4].rulesObject["color"]).toBe("red")
+        expect(declarations[4].rulesObject["background"]).toBe("[blue, red]")
 
         expect(declarations[5].rulesObject["color"]).toBe("red")
-        expect(declarations[5].rulesObject["background"]).toBe("[blue, red]") // TODO #2
+        expect(declarations[5].rulesObject["background"]).toBe("[blue, red]")
     })
 
     it("should allow multiline values", function () {
@@ -134,30 +130,30 @@ describe("Declaration class", function () {
         // --------------------------------------------------------------------------------
 
         expect(declarations[1].stateRules[0]["state"]).toBe("")
-        expect(declarations[1].stateRules[0]["rules"]["font-family"]).toBe("helvetica, arial, sans-serif") // TODO #1
+        expect(declarations[1].stateRules[0]["rules"]["font-family"]).toBe("helvetica, arial, sans-serif")
         expect(declarations[1].stateRules[0]["rules"]["display"]).toBe("block")
         expect(declarations[1].stateRules[0]["rules"]["text-decoration"]).toBe("none")
-        expect(declarations[1].stateRules[0]["rules"]["color"]).toBe("#eee") // TODO #1
+        expect(declarations[1].stateRules[0]["rules"]["color"]).toBe("#eee")
         expect(declarations[1].stateRules[0]["rules"]["background"]).toBe("url(..img/leyley.png) top left, url(../img/lel.png) bottom center")
 
         expect(declarations[1].stateRules[1]["state"]).toBe(":active")
         expect(declarations[1].stateRules[1]["rules"]["font-family"]).toBeUndefined()
         expect(declarations[1].stateRules[1]["rules"]["text-decoration"]).toBeUndefined()
         expect(declarations[1].stateRules[1]["rules"]["display"]).toBe("none")
-        expect(declarations[1].stateRules[1]["rules"]["color"]).toBe("#ddd") // TODO #1
+        expect(declarations[1].stateRules[1]["rules"]["color"]).toBe("#ddd")
         expect(declarations[1].stateRules[1]["rules"]["background"]).toBe("url(../img/lol.png)")
 
         expect(declarations[1].stateRules[2]["state"]).toBe(":hover")
         expect(declarations[1].stateRules[2]["rules"]["font-family"]).toBeUndefined()
         expect(declarations[1].stateRules[2]["rules"]["text-decoration"]).toBeUndefined()
         expect(declarations[1].stateRules[2]["rules"]["display"]).toBe("block")
-        expect(declarations[1].stateRules[2]["rules"]["color"]).toBe("red") // TODO #1
+        expect(declarations[1].stateRules[2]["rules"]["color"]).toBe("red")
         expect(declarations[1].stateRules[2]["rules"]["background"]).toBe("#fd5")
 
         // --------------------------------------------------------------------------------
 
         expect(declarations[4].stateRules[0]["state"]).toBe("")
-        expect(declarations[4].stateRules[0]["rules"]["color"]).toBe("red") // TODO #1
+        expect(declarations[4].stateRules[0]["rules"]["color"]).toBe("red")
         expect(declarations[4].stateRules[0]["rules"]["background"]).toBe("blue")
 
         expect(declarations[4].stateRules[1]["state"]).toBe(":not(.hede)")
