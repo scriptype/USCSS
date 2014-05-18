@@ -20,7 +20,9 @@
     "url": "https://github.com/scriptype/USCSS/issues"
   },
   "homepage": "https://github.com/scriptype/USCSS",
-  "dependencies": {},
+  "dependencies": {
+    "jasmine-node": "~1.14.3"
+  },
   "keywords": [
     "css", "state", "class", "selector"
   ]
