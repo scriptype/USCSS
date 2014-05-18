@@ -11,14 +11,12 @@ var source      = (new Buffer(FileSystem.readFileSync("./demo/style.uscss"))).to
 describe("Declaration splitting", function () {
 
     it("should be resulted with 6 declarations in total", function () {
-        expect(declarations.length).toBe(6) // TODO #1
+        expect(declarations.length).toBe(6)
     })
 
 })
 
 describe("Declaration class", function () {
-
-//    beforeEach()
 
     var i = 0
     for (i; i < declarations.length; i++) {

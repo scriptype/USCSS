@@ -1,4 +1,4 @@
-/* compiled with USCSS on: Sun May 18 2014 20:53:10 GMT+0300 (GTB Yaz Saati)*/ 
+/* compiled with USCSS on: Sun May 18 2014 23:58:15 GMT+0300 (GTB Yaz Saati)*/ 
 div.muz {
 	font-family: helvetica, arial, sans-serif;
 	display: block;
@@ -26,24 +26,21 @@ div.muz.small {
 	font-size: .8em;
 	border: 5px solid black;
 }
-/* comment-1 */
 a {
-	/* comment-2 */    font-family: helvetica, arial, sans-serif;
+	font-family: helvetica, arial, sans-serif;
 	display: block;
 	text-decoration: none;
-	/* comment-3 */    color: #eee;
+	color: #eee;
 	background: url(..img/leyley.png) top left, url(../img/lel.png) bottom center;
 }
-/* comment-1 */
 a:active {
 	display: none;
-	/* comment-3 */    color: #ddd;
+	color: #ddd;
 	background: url(../img/lol.png);
 }
-/* comment-1 */
 a:hover {
 	display: block;
-	/* comment-3 */    color: red;
+	color: red;
 	background: #fd5;
 }
 b {
@@ -51,14 +48,10 @@ b {
     visibility: hidden
 }
 i{}
-/* comment-4 */
-
 p {
-	/*  com        ment-5 */    color: red;
+	color: red;
 	background: blue;
 }
-/* comment-4 */
-
 p:not(.hede) {
 	background: red;
 }
@@ -69,4 +62,3 @@ hr {
 hr:last-child {
 	background: red;
 }
-/* comment-6 */
