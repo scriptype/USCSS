@@ -40,6 +40,9 @@ element.small {
 }
 ```
 
+1.1.0
+=====
+
 As of 1.1.0 USCSS now allows for nested rules, but not in the fashion as LESS/SASS allows. You should use a "$" character at the beginning of children selector. Children selectors must be written relative to the main element. i.e. `"$ a" -> el a {...}`
 
 ```css
