@@ -87,4 +87,6 @@ You only need "lib" folder and files in the demo folder.
 Test
 ====
 
+First run `npm install` to install `jasmine-node`. This is the only dependency..
+
 In the main directory, run `jasmine-node test`
