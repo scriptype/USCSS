@@ -78,8 +78,10 @@ p i em:hover b {
 How to start
 ============
 
-In the main directory of project run `node demo/uscss.js`
+In the main directory of project run `node demo/uscss.js`.
+
 `style.css` will appear next to it. You can configure input and output paths/files in uscss.json.
+
 You only need "lib" folder and files in the demo folder.
 
 Test
