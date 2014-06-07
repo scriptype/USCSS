@@ -1,4 +1,4 @@
-/* compiled with USCSS on: Sun May 18 2014 23:58:15 GMT+0300 (GTB Yaz Saati)*/ 
+/* compiled with USCSS on: Sat Jun 07 2014 18:07:14 GMT+0300 (GTB Yaz Saati)*/ 
 div.muz {
 	font-family: helvetica, arial, sans-serif;
 	display: block;
@@ -49,11 +49,20 @@ b {
 }
 i{}
 p {
-	color: red;
-	background: blue;
+	color: blue;
+	background: url(lel.png);
 }
 p:not(.hede) {
-	background: red;
+	color: red;
+	background: url(lol.png) left center, url(ley.png) right bottom;
+}
+p a {
+	color: yellow;
+	background: blue;
+}
+p i em {
+	color: green;
+	background: #f08;
 }
 hr {
 	color: red;

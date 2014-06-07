@@ -33,11 +33,15 @@ b {
 i{} /* comment-4 */
 
 p {
-    $states: :not(.hede);
+    $states: :not(.hede), $ a,    $ i em      ;
     /*  com
         ment-5 */
-    color: red;
-    background: [blue, red]
+    color: [blue, red, yellow, green];
+    background: [url(lel.png),
+                (url(lol.png) left center, url(ley.png) right bottom),
+                blue,
+                #f08];
+    
 }
 
 hr {

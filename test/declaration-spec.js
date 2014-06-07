@@ -48,8 +48,8 @@ describe("Declaration class", function () {
         expect(declarations[1].rulesObject["text-decoration"]).toBe("none")
         expect(declarations[1].rulesObject["background"].replace(/\s/g, "")).toBe("[(url(..img/leyley.png)topleft,url(../img/lel.png)bottomcenter),url(../img/lol.png),#fd5]")
 
-        expect(declarations[4].rulesObject["color"]).toBe("red")
-        expect(declarations[4].rulesObject["background"]).toBe("[blue, red]")
+        expect(declarations[4].rulesObject["color"]).toBe("[blue, red, yellow, green]")
+        expect(declarations[4].rulesObject["background"].replace(/\s/g, "")).toBe("[url(lel.png),(url(lol.png)leftcenter,url(ley.png)rightbottom),blue,#f08]")
 
         expect(declarations[5].rulesObject["color"]).toBe("red")
         expect(declarations[5].rulesObject["background"]).toBe("[blue, red]")
@@ -58,6 +58,7 @@ describe("Declaration class", function () {
     it("should allow multiline values", function () {
         expect(declarations[0].rulesObject["border"].replace(/\s/g, "")).toBe("[1pxsolidred,2pxsolidrgba(255,170,50,.5),2pxdashedblue,5pxsolidblack]")
         expect(declarations[1].rulesObject["background"].replace(/\s/g, "")).toBe("[(url(..img/leyley.png)topleft,url(../img/lel.png)bottomcenter),url(../img/lol.png),#fd5]")
+        expect(declarations[4].rulesObject["background"].replace(/\s/g, "")).toBe("[url(lel.png),(url(lol.png)leftcenter,url(ley.png)rightbottom),blue,#f08]")
     })
 
     it("should get $states properly", function () {
@@ -73,6 +74,8 @@ describe("Declaration class", function () {
 
         expect(declarations[4]["states"][0]).toBe("")
         expect(declarations[4]["states"][1]).toBe(":not(.hede)")
+        expect(declarations[4]["states"][2]).toBe(" a")
+        expect(declarations[4]["states"][3]).toBe(" i em")
 
         expect(declarations[5]["states"][0]).toBe("")
         expect(declarations[5]["states"][1]).toBe(":last-child")
@@ -153,12 +156,20 @@ describe("Declaration class", function () {
         // --------------------------------------------------------------------------------
 
         expect(declarations[4].stateRules[0]["state"]).toBe("")
-        expect(declarations[4].stateRules[0]["rules"]["color"]).toBe("red")
-        expect(declarations[4].stateRules[0]["rules"]["background"]).toBe("blue")
+        expect(declarations[4].stateRules[0]["rules"]["color"]).toBe("blue")
+        expect(declarations[4].stateRules[0]["rules"]["background"]).toBe("url(lel.png)")
 
         expect(declarations[4].stateRules[1]["state"]).toBe(":not(.hede)")
-        expect(declarations[4].stateRules[1]["rules"]["color"]).toBeUndefined()
-        expect(declarations[4].stateRules[1]["rules"]["background"]).toBe("red")
+        expect(declarations[4].stateRules[1]["rules"]["color"]).toBe("red")
+        expect(declarations[4].stateRules[1]["rules"]["background"]).toBe("url(lol.png) left center, url(ley.png) right bottom")
+
+        expect(declarations[4].stateRules[2]["state"]).toBe(" a")
+        expect(declarations[4].stateRules[2]["rules"]["color"]).toBe("yellow")
+        expect(declarations[4].stateRules[2]["rules"]["background"]).toBe("blue")
+
+        expect(declarations[4].stateRules[3]["state"]).toBe(" i em")
+        expect(declarations[4].stateRules[3]["rules"]["color"]).toBe("green")
+        expect(declarations[4].stateRules[3]["rules"]["background"]).toBe("#f08")
 
         // --------------------------------------------------------------------------------
 
