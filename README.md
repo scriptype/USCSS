@@ -74,3 +74,15 @@ p i em:hover b {
 	background: #f08;
 }
 ```
+
+How to start
+============
+
+In the main directory of project run `node demo/uscss.js`
+`style.css` will appear next to it. You can configure input and output paths/files in uscss.json.
+You only need "lib" folder and files in the demo folder.
+
+Test
+====
+
+In the main directory, run `jasmine-node test`
