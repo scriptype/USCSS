@@ -17,7 +17,7 @@ FileSystem.readFile(options.source, function (err, fd) {
 
     // Get the list of separate css-blocks
     var declarations = Utils.getDeclarations(new Buffer(fd).toString()),
-        usOutput = "/* compiled with USCSS on: " + new Date() + "*/ \n"
+        usOutput = "/* compiled with USCSS on: " + new Date() + "*/ \n",
         i = 0
     for (i; i < declarations.length; i++) {
         // Get each declaration block prepare their output
